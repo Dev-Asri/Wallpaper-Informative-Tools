@@ -54,6 +54,6 @@ pyinstaller --onefile --noconsole --name "WallpaperInformativeTool" --add-data "
 
 ## GitHub
 - **Repo:** https://github.com/Dev-Asri/Wallpaper-Informative-Tools
-- **Token:** AGENTS.md içinde saklanmaz, `_open_help` token kullanmaz
 - **Kullanıcı:** Dev-Asri
 - **Proje:** Wallpaper-Informative-Tools
+- **Token:** secrets_manager.py içinde (`.gitignore`'da)

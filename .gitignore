@@ -8,3 +8,4 @@ cached_data.json
 settings.json
 err.txt
 out.txt
+secrets_manager.py
