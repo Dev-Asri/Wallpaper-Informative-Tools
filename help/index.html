@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WallpaperInformativeTool - Yardım</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.7; }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px; }
+  h1 { font-size: 2.2em; color: #7c3aed; border-bottom: 3px solid #7c3aed; padding-bottom: 12px; margin: 30px 0 20px; }
+  h2 { font-size: 1.5em; color: #06b6d4; margin: 30px 0 15px; padding-left: 10px; border-left: 4px solid #06b6d4; }
+  h3 { font-size: 1.15em; color: #f59e0b; margin: 20px 0 10px; }
+  p { margin: 10px 0; }
+  ul, ol { margin: 10px 0 10px 25px; }
+  li { margin: 5px 0; }
+  code { background: #2d2d44; padding: 2px 7px; border-radius: 4px; font-size: 0.92em; color: #f472b6; }
+  pre { background: #2d2d44; padding: 14px 18px; border-radius: 8px; overflow-x: auto; margin: 12px 0; border-left: 3px solid #7c3aed; }
+  .note { background: #1e293b; border-left: 4px solid #f59e0b; padding: 12px 16px; border-radius: 6px; margin: 15px 0; }
+  .tip { background: #0f1b1f; border-left: 4px solid #10b981; padding: 12px 16px; border-radius: 6px; margin: 15px 0; }
+  .warn { background: #2b1f1a; border-left: 4px solid #ef4444; padding: 12px 16px; border-radius: 6px; margin: 15px 0; }
+  kbd { background: #3d3d5c; padding: 2px 8px; border-radius: 4px; border: 1px solid #555; font-size: 0.9em; }
+  img { max-width: 100%; border-radius: 8px; margin: 15px 0; border: 1px solid #3d3d5c; }
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+  th, td { border: 1px solid #3d3d5c; padding: 8px 12px; text-align: left; }
+  th { background: #2d2d44; color: #7c3aed; }
+  .toc { background: #16213e; padding: 20px 25px; border-radius: 10px; margin: 20px 0; }
+  .toc a { color: #06b6d4; text-decoration: none; display: block; padding: 4px 0; }
+  .toc a:hover { color: #7c3aed; text-decoration: underline; }
+  .footer { text-align: center; padding: 30px 0; color: #666; font-size: 0.85em; border-top: 1px solid #2d2d44; margin-top: 40px; }
+  .screenshot { background: #2d2d44; padding: 8px; border-radius: 8px; text-align: center; font-size: 0.85em; color: #888; }
+  .badge { display: inline-block; background: #7c3aed; color: #fff; padding: 1px 10px; border-radius: 10px; font-size: 0.75em; margin-right: 6px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>WallpaperInformativeTool</h1>
+<p style="font-size: 1.1em; color: #aaa;">Duvar kağıdınızda sistem bilgilerinizi görüntüleyin — BGInfo'nun modern halefi.</p>
+
+<div class="toc">
+  <strong style="color: #7c3aed; font-size: 1.1em;">İçindekiler</strong>
+  <a href="#giris">1. Giriş</a>
+  <a href="#kurulum">2. Kurulum ve Çalıştırma</a>
+  <a href="#arayuz">3. Arayüz Genel Bakış</a>
+  <a href="#kaynaklar">4. Bilgi Kaynakları</a>
+  <a href="#bilgi-agaci">5. Bilgi Ağacı (Kullanılabilir Bilgiler)</a>
+  <a href="#ogeler">6. Öğe Ekleme, Çıkarma ve Sıralama</a>
+  <a href="#surukleme">7. Öğe Taşıma (Sürükleme)</a>
+  <a href="#hizalama">8. Hizalama</a>
+  <a href="#ozellikler">9. Özellikler Paneli</a>
+  <a href="#bosluk">10. Satırlar Arası Boşluk</a>
+  <a href="#arkaplan">11. Arkaplan Ayarları</a>
+  <a href="#dil">12. Dil Değiştirme (Türkçe / English)</a>
+  <a href="#acilis">13. Açılış Ayarları</a>
+  <a href="#duvar-kagidi">14. Duvar Kağıdı Uygulama</a>
+  <a href="#on-izleme">15. Ön İzleme</a>
+  <a href="#masaustu-on-izleme">16. Masaüstü Ön İzleme</a>
+  <a href="#kisayollar">17. Kısayollar ve İpuçları</a>
+  <a href="#sss">18. Sık Sorulan Sorular</a>
+  <a href="#contact">19. İletişim</a>
+</div>
+
+<!-- ───── 1. Giriş ───── -->
+<h2 id="giris">1. Giriş</h2>
+<p>
+<strong>WallpaperInformativeTool</strong>, Windows duvar kağıdınızın üzerine sistem bilgilerinizi (CPU, RAM, disk, ağ, işletim sistemi, veritabanı vb.) yazdıran bir programdır. Microsoft'un BGInfo aracına benzer şekilde çalışır, ancak daha modern bir arayüz ve daha fazla özelleştirme sunar.
+</p>
+<ul>
+  <li><strong>Tamamen ücretsiz</strong> ve açık kaynak</li>
+  <li><strong>Çift dilli</strong> arayüz (Türkçe / English)</li>
+  <li><strong>Sürükle-bırak</strong> ile öğe konumlandırma</li>
+  <li><strong>Otomatik hizalama</strong> (sol, sağ, yukarı, aşağı)</li>
+  <li><strong>Her öğe</strong> için ayrı yazı tipi, renk, boyut ayarı</li>
+  <li><strong>Çoklu seçim</strong> ile toplu taşıma ve hizalama</li>
+</ul>
+
+<!-- ───── 2. Kurulum ───── -->
+<h2 id="kurulum">2. Kurulum ve Çalıştırma</h2>
+
+<h3>EXE Sürümü (Önerilen)</h3>
+<ol>
+  <li><code>WallpaperInformativeTool.exe</code> dosyasını herhangi bir klasöre kopyalayın</li>
+  <li>Çift tıklayarak çalıştırın — kurulum gerektirmez, taşınabilirdir</li>
+</ol>
+
+<h3>Python ile Çalıştırma (Geliştiriciler İçin)</h3>
+<pre>pip install -r requirements.txt
+python src\main.py</pre>
+<p>Gereksinimler: Python 3.10+, Pillow, psutil, wmi, pyodbc (opsiyonel), pyinstaller (opsiyonel).</p>
+
+<h3>EXE Derleme</h3>
+<pre>pyinstaller --onefile --noconsole --name "WallpaperInformativeTool" ^
+  --add-data "windows_sysinfo;windows_sysinfo" ^
+  --hidden-import wmi --hidden-import getpass --hidden-import pyodbc src\main.py</pre>
+
+<!-- ───── 3. Arayüz ───── -->
+<h2 id="arayuz">3. Arayüz Genel Bakış</h2>
+<p>Program üç ana bölümden oluşur:</p>
+<table>
+  <tr><th>Bölüm</th><th>İçerik</th></tr>
+  <tr><td><strong>Üst Araç Çubuğu</strong></td><td>Veri güncelleme, kaynak seçim kutuları, açılış ayarları, dil seçimi, arkaplan ve duvar kağıdı butonları</td></tr>
+  <tr><td><strong>Sol Panel</strong></td><td>Kullanılabilir Bilgiler ağacı — tüm sistem bilgisi öğelerinin listesi</td></tr>
+  <tr><td><strong>Orta Panel</strong></td><td>Aktif Bilgiler tablosu + Özellikler paneli</td></tr>
+  <tr><td><strong>Sağ Panel</strong></td><td>Ön İzleme alanı + sürükleme/hizalama kontrolleri + alt çubuk</td></tr>
+</table>
+
+<!-- ───── 4. Bilgi Kaynakları ───── -->
+<h2 id="kaynaklar">4. Bilgi Kaynakları</h2>
+<p>Üst araç çubuğundaki dört onay kutusu hangi kaynaklardan veri toplanacağını belirler:</p>
+<table>
+  <tr><th>Kaynak</th><th>Topladığı Bilgiler</th></tr>
+  <tr><td><span class="badge">Ağ</span></td><td>Bilgisayar adı, IP adresleri (IPv4/IPv6), ağ arayüz bilgileri</td></tr>
+  <tr><td><span class="badge">Donanım</span></td><td>CPU (ad, çekirdek, hız, kullanım), RAM (toplam, kullanılan, boş), diskler (boyut, doluluk), GPU, anakart</td></tr>
+  <tr><td><span class="badge">Sistem</span></td><td>İşletim sistemi (sürüm, yapı, mimari), kullanıcı bilgileri, çalışma süresi, saat dilimi, lisans, aktivasyon, kullanıcı listesi</td></tr>
+  <tr><td><span class="badge">Veritabanı</span></td><td>SQL Server örnekleri, ODBC bağlantıları (sistem/kullanıcı DSN)</td></tr>
+</table>
+<div class="tip">Sadece ihtiyacınız olan kaynakları seçin — bu hem veri toplama süresini kısaltır hem de karmaşayı azaltır.</div>
+
+<!-- ───── 5. Bilgi Ağacı ───── -->
+<h2 id="bilgi-agaci">5. Bilgi Ağacı (Kullanılabilir Bilgiler)</h2>
+<p>Sol paneldeki ağaç, seçili kaynaklardan gelen tüm bilgi öğelerini kategorilere ayrılmış şekilde gösterir. Her öğenin yanında güncel değeri (veya önbellekteki son değeri) görüntülenir.</p>
+<ul>
+  <li><strong>Öğe eklemek için:</strong> Bir öğeye çift tıklayın → Aktif Bilgiler listesine eklenir</li>
+  <li><strong>Önizleme:</strong> Eklenen öğeler sağ paneldeki ön izleme alanında görünür</li>
+  <li><strong>Önbellek:</strong> Veriler "Verileri Güncelle" butonuyla toplanır; önbellekteki veriler ağaçta gösterilir</li>
+</ul>
+
+<!-- ───── 6. Öğeler ───── -->
+<h2 id="ogeler">6. Öğe Ekleme, Çıkarma ve Sıralama</h2>
+
+<h3>Ekleme</h3>
+<ul>
+  <li>Sol ağaçta bir öğeye <strong>çift tıklayın</strong></li>
+  <li>Veya öğeyi seçip sağ tıklayın (varsa)</li>
+  <li>Öğe, Aktif Bilgiler listesine ve ön izlemeye eklenir</li>
+</ul>
+<div class="note">Zaten aktif olan bir öğeyi eklemeye çalışırsanız uyarı verilir.</div>
+
+<h3>Çıkarma</h3>
+<ul>
+  <li>Aktif Bilgiler listesinde bir satırı seçin</li>
+  <li><kbd>❌ Kaldır</kbd> butonuna tıklayın</li>
+  <li>Veya <kbd>🔄 Temizle</kbd> ile tüm aktif öğeleri kaldırın</li>
+</ul>
+
+<h3>Sıralama</h3>
+<ul>
+  <li><kbd>▲ Yukarı</kbd> / <kbd>▼ Aşağı</kbd> butonları ile öğelerin sırasını değiştirin</li>
+  <li>Sıra, duvar kağıdındaki görünüm sırasını belirler</li>
+</ul>
+
+<!-- ───── 7. Sürükleme ───── -->
+<h2 id="surukleme">7. Öğe Taşıma (Sürükleme)</h2>
+<p>Ön izleme alanında öğeleri fare ile sürükleyerek istediğiniz konuma yerleştirebilirsiniz.</p>
+
+<h3>Temel Sürükleme</h3>
+<ol>
+  <li>Ön izleme alanında bir öğenin <strong>etiket (label)</strong> veya <strong>değer (value)</strong> kısmına tıklayın</li>
+  <li>Fareyi basılı tutarak sürükleyin</li>
+  <li>Bıraktığınızda öğe yeni konumuna taşınır</li>
+</ol>
+
+<h3>Sürükleme Kısıtlama Modları</h3>
+<p>Sağ paneldeki "Sürükleme:" bölümünden yön kısıtlaması seçebilirsiniz:</p>
+<table>
+  <tr><th>Mod</th><th>Davranış</th></tr>
+  <tr><td><kbd>↔ Yatay</kbd> (tek seçili)</td><td>Öğeler sadece yatay eksende (X) hareket eder</td></tr>
+  <tr><td><kbd>↕ Dikey</kbd> (tek seçili)</td><td>Öğeler sadece dikey eksende (Y) hareket eder</td></tr>
+  <tr><td>İkisi de seçili / Hiçbiri seçili değil</td><td>Öğeler her yönde serbestçe hareket eder</td></tr>
+</table>
+
+<h3>Çoklu Seçim ile Toplu Taşıma</h3>
+<ol>
+  <li><kbd>Ctrl</kbd> tuşunu basılı tutarak ön izlemedeki birden çok öğeye tıklayın</li>
+  <li>Seçili öğeler vurgulanır</li>
+  <li>Herhangi bir seçili öğeyi sürükleyin → tüm seçili öğeler birlikte taşınır</li>
+</ol>
+
+<div class="tip"><kbd>Ctrl+Click</kbd> ile öğenin sadece etiket veya sadece değer kısmını da seçebilirsiniz. Bu sayede etiket ve değeri bağımsız olarak taşıyabilirsiniz.</div>
+
+<h3>Önizleme Alanını Kaydırma (Pan)</h3>
+<p>Ön izleme alanında <strong>boş bir alana</strong> tıklayıp sürükleyerek tüm görünümü kaydırabilirsiniz. Bu işlem seçili öğeleri temizler.</p>
+
+<!-- ───── 8. Hizalama ───── -->
+<h2 id="hizalama">8. Hizalama</h2>
+<p>Seçili öğeleri birbirine göre hizalamak için dört yön butonu kullanılır:</p>
+<table>
+  <tr><th>Buton</th><th>İşlem</th></tr>
+  <tr><td><kbd>←</kbd> Sola Hizala</td><td>Seçili tüm parçaların X koordinatını en soldaki parçanın X'ine eşitler</td></tr>
+  <tr><td><kbd>→</kbd> Sağa Hizala</td><td>Seçili tüm parçaların sağ kenarını (X + genişlik) en sağdaki parçaya eşitler</td></tr>
+  <tr><td><kbd>↑</kbd> Yukarı Hizala</td><td>Seçili tüm parçaların Y koordinatını en yukarıdaki parçanın Y'sine eşitler</td></tr>
+  <tr><td><kbd>↓</kbd> Aşağı Hizala</td><td>Seçili tüm parçaların alt kenarını (Y + yükseklik) en aşağıdaki parçaya eşitler</td></tr>
+</table>
+
+<div class="note">
+  <strong>Önemli:</strong> Hizalama, metnin gerçek piksel genişliğini hesaplar (Pillow ile ölçülür). Sağa ve aşağı hizalama, parçaların genişlik/yüksekliğini dikkate alarak doğru sonuç verir.
+</div>
+
+<h3>Otomatik Hizalama (Hizala Butonu)</h3>
+<p>
+<kbd>📋 Hizala</kbd> butonu, tüm aktif öğeleri varsayılan konumlara (başlangıç noktası: 30,30; label-değer arası 200px; satır yüksekliği 35px) otomatik olarak dizer. Bu, dağınık öğeleri tek bir tıklamayla düzene sokmak için kullanışlıdır.
+</p>
+
+<h3>Hizalama İpuçları</h3>
+<ul>
+  <li>Hizalama için önce <kbd>Ctrl+Click</kbd> ile en az 2 öğe seçin</li>
+  <li>Sadece etiketleri veya sadece değerleri ayrı ayrı seçip hizalayabilirsiniz</li>
+  <li>Farklı öğelerin etiketlerini birbirine, değerlerini ayrı bir gruba hizalayabilirsiniz</li>
+</ul>
+
+<!-- ───── 9. Özellikler ───── -->
+<h2 id="ozellikler">9. Özellikler Paneli</h2>
+<p>Orta panelin altında, seçili öğenin tüm özelliklerini düzenleyebileceğiniz bir panel bulunur. İki sekme içerir:</p>
+
+<h3>Etiket Sekmesi</h3>
+<ul>
+  <li><strong>Etiket Adı</strong> — Görünen metni değiştirin</li>
+  <li><strong>Sabit Değer</strong> — Dinamik değer yerine sabit bir metin gösterin</li>
+  <li><strong>Göster</strong> — Etiketin görünürlüğünü aç/kapa</li>
+  <li><strong>Yazı Tipi / Boyut / Renk</strong> — Görünümü özelleştirin</li>
+</ul>
+
+<h3>Değer Sekmesi</h3>
+<ul>
+  <li><strong>Göster</strong> — Değerin görünürlüğünü aç/kapa</li>
+  <li><strong>Yazı Tipi / Boyut / Renk</strong> — Görünümü özelleştirin</li>
+  <li><strong>Sabit Değer</strong> — Değer kısmında sabit metin gösterin</li>
+</ul>
+
+<h3>Konum Sekmesi</h3>
+<ul>
+  <li><strong>Label X / Y</strong> — Etiketin piksel cinsinden konumu</li>
+  <li><strong>Value X / Y</strong> — Değerin piksel cinsinden konumu</li>
+  <li>Değerleri doğrudan girerek hassas konumlandırma yapabilirsiniz</li>
+</ul>
+
+<h3>Tümüne Uygula</h3>
+<p>Her özelliğin yanındaki <kbd>→ Tümü</kbd> butonu, o özelliği tüm aktif öğelere aynı anda uygular. Örneğin tüm etiketlerin yazı tipini aynı anda değiştirebilirsiniz.</p>
+
+<!-- ───── 10. Satır Arası Boşluk ───── -->
+<h2 id="bosluk">10. Satırlar Arası Boşluk</h2>
+<p>
+Sağ panelin altındaki <strong>"Satırlar arası boşluk"</strong> spinbox'ı, tüm aktif öğelerin dikey (Y) konumlarını yeniden düzenler. Değeri değiştirdiğinizde:
+</p>
+<ul>
+  <li>Öğelerin Y koordinatları, ilk öğenin Y'sinden başlayarak eşit aralıklarla dağıtılır</li>
+  <li>X koordinatları korunur</li>
+  <li>Aralık 10-100 piksel arasında ayarlanabilir</li>
+</ul>
+
+<!-- ───── 11. Arkaplan ───── -->
+<h2 id="arkaplan">11. Arkaplan Ayarları</h2>
+<p>Üst araç çubuğunun sağ tarafında iki arkaplan butonu bulunur:</p>
+
+<h3>Arkaplan Rengi</h3>
+<p><kbd>🎨 Arkaplan Rengi</kbd> butonu ile düz bir arkaplan rengi seçebilirsiniz. Varsayılan renk koyu laciverttir (#1e1e2e).</p>
+
+<h3>Arkaplan Resmi</h3>
+<p><kbd>🖼 Arkaplan Resmi</kbd> butonu ile bir resim dosyası (JPG, PNG, BMP) seçebilirsiniz. Seçilen resim duvar kağıdının arkaplanı olarak kullanılır. Resim, ekran çözünürlüğüne sığacak şekilde ölçeklenir.</p>
+
+<div class="note">Arkaplan türü (renk veya resim) otomatik olarak belirlenir. Son seçilen arkaplan türü kullanılır.</div>
+
+<!-- ───── 12. Dil ───── -->
+<h2 id="dil">12. Dil Değiştirme (Türkçe / English)</h2>
+<p>
+Üst araç çubuğunda <kbd>Türkçe</kbd> / <kbd>English</kbd> radyo butonları bulunur. Dile tıkladığınızda tüm arayüz anında seçilen dile çevrilir:
+</p>
+<ul>
+  <li>Menüler, butonlar, etiketler</li>
+  <li>Bilgi ağacındaki öğe adları ve kategoriler</li>
+  <li>Durum çubuğu mesajları</li>
+  <li>Diyalog pencereleri (uyarı, başarı, onay)</li>
+</ul>
+<p>Dil tercihiniz kalıcıdır ve bir sonraki açılışta hatırlanır.</p>
+
+<div class="tip">Dil değiştirildiğinde mevcut aktif öğelerinizin etiketleri de güncellenir, konum ayarlarınız korunur.</div>
+
+<!-- ───── 13. Açılış Ayarları ───── -->
+<h2 id="acilis">13. Açılış Ayarları</h2>
+
+<h3>Açılışta Güncelle</h3>
+<p>İşaretliyse, program başladığında veriler otomatik olarak toplanır ve önbelleğe alınır. Önbellek varsa öğeler hemen değerlerini gösterir.</p>
+
+<h3>Açıldığında Değiştir ve Kapat</h3>
+<p>Bu özellik, programı Windows başlangıcında çalıştırmak ve otomatik olarak duvar kağıdını değiştirip kapanmasını sağlamak için kullanılır:</p>
+<ol>
+  <li>Onay kutusunu işaretleyin</li>
+  <li>Bekleme süresini ayarlayın (1-10 saniye)</li>
+  <li>Program bir sonraki açılışında:
+    <ul>
+      <li>Simge durumunda (minimize) açılır</li>
+      <li>Verileri toplar</li>
+      <li>Duvar kağıdını uygular</li>
+      <li>Ayarlanan süre kadar bekler</li>
+      <li>Kendiliğinden kapanır</li>
+    </ul>
+  </li>
+</ol>
+<div class="warn">
+  <strong>İptal etme:</strong> Bekleme süresi dolmadan program penceresini açıp "Açıldığında Değiştir ve Kapat" onay kutusunun işaretini kaldırırsanız, program kapanmaz ve normal şekilde çalışmaya devam eder.
+</div>
+
+<!-- ───── 14. Duvar Kağıdı ───── -->
+<h2 id="duvar-kagidi">14. Duvar Kağıdı Uygulama</h2>
+<ol>
+  <li>Aktif Bilgiler listenizde en az bir öğe olduğundan emin olun</li>
+  <li>Öğeleri istediğiniz gibi konumlandırın ve özelliklerini ayarlayın</li>
+  <li>Arkaplan rengini veya resmini seçin</li>
+  <li><kbd>🖨 Duvar Kağıdını Uygula</kbd> butonuna tıklayın</li>
+</ol>
+<p>Program şu adımları gerçekleştirir:</p>
+<ol>
+  <li>Fiziksel ekran çözünürlüğünü algılar (DPI ölçeklendirmesinden bağımsız, gerçek piksel)</li>
+  <li>Yüksek kaliteli bir BMP görüntüsü oluşturur</li>
+  <li>Bilgileri metin olarak görüntüye işler</li>
+  <li>Windows API ile duvar kağıdını değiştirir</li>
+</ol>
+
+<div class="note">
+  <strong>Çözünürlük:</strong> Program, Windows'un DPI ölçeklendirmesini dikkate almaz. Fiziksel ekran çözünürlüğünde (%100 ölçek) kayıpsız görüntü oluşturur. Bu sayede metinler net ve okunabilir olur.
+</div>
+
+<!-- ───── 15. Ön İzleme ───── -->
+<h2 id="on-izleme">15. Ön İzleme</h2>
+<p>Sağ paneldeki ön izleme alanı, duvar kağıdının nasıl görüneceğini gösterir.</p>
+
+<h3>Temel Ön İzleme</h3>
+<p>Öğeleri ekledikçe ön izleme canlı olarak güncellenir. Konum, yazı tipi, renk gibi tüm değişiklikler anında yansır.</p>
+
+<h3>Tam Ekran Ön İzleme (<kbd>🔍 Ön İzle</kbd>)</h3>
+<ul>
+  <li>Duvar kağıdını tam ekran olarak görüntüler</li>
+  <li><strong>Fare tekerleği</strong> ile yakınlaştırma/uzaklaştırma yapabilirsiniz</li>
+  <li><kbd>ESC</kbd> tuşu veya fare tıklaması ile kapatılır</li>
+</ul>
+
+<!-- ───── 16. Masaüstü Ön İzleme ───── -->
+<h2 id="masaustu-on-izleme">16. Masaüstü Ön İzleme</h2>
+<p>
+<kbd>🖥 Masaüstü Ön izleme</kbd> butonu, duvar kağıdını gerçek masaüstünüzde görmenizi sağlar:
+</p>
+<ol>
+  <li>Tüm açık pencereler simge durumuna küçültülür</li>
+  <li>Duvar kağıdı geçici olarak uygulanır</li>
+  <li>Ayarlanan <strong>Bekleme Süresi</strong> (1-60 saniye) boyunca görüntülenir</li>
+  <li>Süre sonunda eski duvar kağıdı geri yüklenir ve program öne gelir</li>
+</ol>
+<div class="tip">Masaüstü ön izleme, duvar kağıdını gerçek ortamda test etmek için idealdir. Bekleme süresini ihtiyacınıza göre ayarlayın.</div>
+
+<!-- ───── 17. Kısayollar ───── -->
+<h2 id="kisayollar">17. Kısayollar ve İpuçları</h2>
+<table>
+  <tr><th>İşlem</th><th>Nasıl Yapılır</th></tr>
+  <tr><td>Öğe ekleme</td><td>Sol ağaçta öğeye çift tıklayın</td></tr>
+  <tr><td>Çoklu seçim</td><td><kbd>Ctrl</kbd> basılı tutarak öğelere tıklayın</td></tr>
+  <tr><td>Parça seçimi</td><td><kbd>Ctrl+Click</kbd> ile sadece etiket veya sadece değer seçin</td></tr>
+  <tr><td>Toplu taşıma</td><td>Çoklu seçim yapın, ardından seçili öğelerden birini sürükleyin</td></tr>
+  <tr><td>Önizleme kaydırma</td><td>Ön izlemede boş alana tıklayıp sürükleyin</td></tr>
+  <tr><td>Tam ekran kapatma</td><td><kbd>ESC</kbd> tuşu veya tıklama</td></tr>
+  <tr><td>Otomatik kaydetme</td><td>Tüm değişiklikler anında kaydedilir, manuel kaydetme gerekmez</td></tr>
+  <tr><td>Ayarları sıfırlama</td><td><code>%APPDATA%\WallpaperInformativeTool\settings.json</code> dosyasını silin</td></tr>
+</table>
+
+<!-- ───── 18. SSS ───── -->
+<h2 id="sss">18. Sık Sorulan Sorular</h2>
+
+<h3>Program neden açılmıyor?</h3>
+<p>EXE sürümü için: Virüsten koruma yazılımı engelliyor olabilir. Python sürümü için: <code>pip install -r requirements.txt</code> ile bağımlılıkları kurduğunuzdan emin olun.</p>
+
+<h3>Veriler neden görünmüyor?</h3>
+<p>"Verileri Güncelle" butonuna tıklayın. İlk açılışta önbellek boş olduğu için öğeler "..." gösterebilir.</p>
+
+<h3>Duvar kağıdı neden uygulanmıyor?</h3>
+<p>En az bir aktif öğe eklediğinizden emin olun. Aktif Bilgiler listesi boşken duvar kağıdı uygulanmaz.</p>
+
+<h3>Ayarlar nereye kaydediliyor?</h3>
+<p><code>%APPDATA%\WallpaperInformativeTool\settings.json</code> dosyasına kaydedilir. Bu dosyayı silerek tüm ayarları sıfırlayabilirsiniz.</p>
+
+<h3>Önbellek nerede saklanıyor?</h3>
+<p><code>cached_data.json</code> dosyası, EXE'nin yanında veya proje klasöründe saklanır. Verileri güncellediğinizde güncellenir.</p>
+
+<h3>Program dilini nasıl değiştiririm?</h3>
+<p>Üst araç çubuğundaki <kbd>Türkçe</kbd> / <kbd>English</kbd> radyo butonuna tıklayın. Tüm arayüz anında değişir.</p>
+
+<h3>Birden çok ekranda çalışır mı?</h3>
+<p>Program birincil ekranın fiziksel çözünürlüğünü kullanır. Çoklu ekran desteği sınırlıdır.</p>
+
+<h3>Programı Windows ile başlatabilir miyim?</h3>
+<p><code>shell:startup</code> klasörüne EXE'nin kısayolunu ekleyin ve "Açıldığında Değiştir ve Kapat" seçeneğini işaretleyin.</p>
+
+<!-- ───── 19. İletişim ───── -->
+<h2 id="contact">19. İletişim</h2>
+<p>
+  <strong>Hazırlayan:</strong> Asri Akdeniz<br>
+  <strong>E-posta:</strong> asriakdeniz@gmail.com<br>
+  <strong>Web:</strong> www.asriakdeniz.com
+</p>
+<p style="margin-top: 20px; color: #888; font-size: 0.9em;">
+  &copy; 2026 Asri Akdeniz. Tüm hakları saklıdır.
+</p>
+
+<div class="footer">
+  WallpaperInformativeTool — BGInfo'nun Modern Alternatifi
+</div>
+
+</div>
+</body>
+</html>

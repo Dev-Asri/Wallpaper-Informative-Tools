@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WallpaperInformativeTool - Help</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.7; }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px; }
+  h1 { font-size: 2.2em; color: #7c3aed; border-bottom: 3px solid #7c3aed; padding-bottom: 12px; margin: 30px 0 20px; }
+  h2 { font-size: 1.5em; color: #06b6d4; margin: 30px 0 15px; padding-left: 10px; border-left: 4px solid #06b6d4; }
+  h3 { font-size: 1.15em; color: #f59e0b; margin: 20px 0 10px; }
+  p { margin: 10px 0; }
+  ul, ol { margin: 10px 0 10px 25px; }
+  li { margin: 5px 0; }
+  code { background: #2d2d44; padding: 2px 7px; border-radius: 4px; font-size: 0.92em; color: #f472b6; }
+  pre { background: #2d2d44; padding: 14px 18px; border-radius: 8px; overflow-x: auto; margin: 12px 0; border-left: 3px solid #7c3aed; }
+  .note { background: #1e293b; border-left: 4px solid #f59e0b; padding: 12px 16px; border-radius: 6px; margin: 15px 0; }
+  .tip { background: #0f1b1f; border-left: 4px solid #10b981; padding: 12px 16px; border-radius: 6px; margin: 15px 0; }
+  .warn { background: #2b1f1a; border-left: 4px solid #ef4444; padding: 12px 16px; border-radius: 6px; margin: 15px 0; }
+  kbd { background: #3d3d5c; padding: 2px 8px; border-radius: 4px; border: 1px solid #555; font-size: 0.9em; }
+  img { max-width: 100%; border-radius: 8px; margin: 15px 0; border: 1px solid #3d3d5c; }
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+  th, td { border: 1px solid #3d3d5c; padding: 8px 12px; text-align: left; }
+  th { background: #2d2d44; color: #7c3aed; }
+  .toc { background: #16213e; padding: 20px 25px; border-radius: 10px; margin: 20px 0; }
+  .toc a { color: #06b6d4; text-decoration: none; display: block; padding: 4px 0; }
+  .toc a:hover { color: #7c3aed; text-decoration: underline; }
+  .footer { text-align: center; padding: 30px 0; color: #666; font-size: 0.85em; border-top: 1px solid #2d2d44; margin-top: 40px; }
+  .badge { display: inline-block; background: #7c3aed; color: #fff; padding: 1px 10px; border-radius: 10px; font-size: 0.75em; margin-right: 6px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>WallpaperInformativeTool</h1>
+<p style="font-size: 1.1em; color: #aaa;">Display system information on your Windows wallpaper — the modern successor to BGInfo.</p>
+
+<div class="toc">
+  <strong style="color: #7c3aed; font-size: 1.1em;">Contents</strong>
+  <a href="#intro">1. Introduction</a>
+  <a href="#install">2. Installation &amp; Running</a>
+  <a href="#interface">3. Interface Overview</a>
+  <a href="#sources">4. Information Sources</a>
+  <a href="#tree">5. Information Tree (Available Information)</a>
+  <a href="#items">6. Add, Remove, and Reorder Items</a>
+  <a href="#drag">7. Dragging Items</a>
+  <a href="#align">8. Alignment</a>
+  <a href="#properties">9. Properties Panel</a>
+  <a href="#spacing">10. Row Spacing</a>
+  <a href="#background">11. Background Settings</a>
+  <a href="#language">12. Language Switching (Türkçe / English)</a>
+  <a href="#startup">13. Startup Settings</a>
+  <a href="#wallpaper">14. Applying the Wallpaper</a>
+  <a href="#preview">15. Preview</a>
+  <a href="#desktop-preview">16. Desktop Preview</a>
+  <a href="#shortcuts">17. Shortcuts &amp; Tips</a>
+  <a href="#faq">18. Frequently Asked Questions</a>
+  <a href="#contact">19. Contact</a>
+</div>
+
+<!-- ───── 1. Introduction ───── -->
+<h2 id="intro">1. Introduction</h2>
+<p>
+<strong>WallpaperInformativeTool</strong> is a program that displays system information (CPU, RAM, disks, network, OS, database, etc.) on your Windows wallpaper. It works similarly to Microsoft's BGInfo tool but offers a more modern interface and greater customization.
+</p>
+<ul>
+  <li><strong>Completely free</strong> and open source</li>
+  <li><strong>Bilingual</strong> interface (Türkçe / English)</li>
+  <li><strong>Drag &amp; drop</strong> item positioning</li>
+  <li><strong>Auto-alignment</strong> (left, right, top, bottom)</li>
+  <li><strong>Per-item</strong> font, color, and size settings</li>
+  <li><strong>Multi-select</strong> for bulk moving and alignment</li>
+</ul>
+
+<!-- ───── 2. Installation ───── -->
+<h2 id="install">2. Installation &amp; Running</h2>
+
+<h3>EXE Version (Recommended)</h3>
+<ol>
+  <li>Copy <code>WallpaperInformativeTool.exe</code> to any folder</li>
+  <li>Double-click to run — no installation required, fully portable</li>
+</ol>
+
+<h3>Running with Python (For Developers)</h3>
+<pre>pip install -r requirements.txt
+python src\main.py</pre>
+<p>Requirements: Python 3.10+, Pillow, psutil, wmi, pyodbc (optional), pyinstaller (optional).</p>
+
+<h3>Building the EXE</h3>
+<pre>pyinstaller --onefile --noconsole --name "WallpaperInformativeTool" ^
+  --add-data "windows_sysinfo;windows_sysinfo" ^
+  --hidden-import wmi --hidden-import getpass --hidden-import pyodbc src\main.py</pre>
+
+<!-- ───── 3. Interface ───── -->
+<h2 id="interface">3. Interface Overview</h2>
+<p>The program consists of three main sections:</p>
+<table>
+  <tr><th>Section</th><th>Content</th></tr>
+  <tr><td><strong>Top Toolbar</strong></td><td>Refresh data, source checkboxes, startup settings, language selection, background and wallpaper buttons</td></tr>
+  <tr><td><strong>Left Panel</strong></td><td>Available Information tree — list of all system info items</td></tr>
+  <tr><td><strong>Center Panel</strong></td><td>Active Items table + Properties panel</td></tr>
+  <tr><td><strong>Right Panel</strong></td><td>Preview area + drag/alignment controls + bottom bar</td></tr>
+</table>
+
+<!-- ───── 4. Sources ───── -->
+<h2 id="sources">4. Information Sources</h2>
+<p>Four checkboxes on the toolbar determine which data sources to collect from:</p>
+<table>
+  <tr><th>Source</th><th>Collected Information</th></tr>
+  <tr><td><span class="badge">Network</span></td><td>Hostname, IP addresses (IPv4/IPv6), network interface info</td></tr>
+  <tr><td><span class="badge">Hardware</span></td><td>CPU (name, cores, speed, usage), RAM (total, used, free), disks (size, usage), GPU, motherboard</td></tr>
+  <tr><td><span class="badge">System</span></td><td>OS (version, build, architecture), user info, uptime, timezone, license, activation, user list</td></tr>
+  <tr><td><span class="badge">Database</span></td><td>SQL Server instances, ODBC connections (system/user DSN)</td></tr>
+</table>
+<div class="tip">Only select the sources you need — this reduces collection time and clutter.</div>
+
+<!-- ───── 5. Tree ───── -->
+<h2 id="tree">5. Information Tree (Available Information)</h2>
+<p>The tree on the left panel shows all info items from selected sources, organized by category. Each item displays its current value (or the cached value).</p>
+<ul>
+  <li><strong>To add an item:</strong> Double-click an item → it's added to the Active Items list</li>
+  <li><strong>Preview:</strong> Added items appear in the preview area on the right</li>
+  <li><strong>Cache:</strong> Data is collected via the "Refresh Data" button; cached data is shown in the tree</li>
+</ul>
+
+<!-- ───── 6. Items ───── -->
+<h2 id="items">6. Add, Remove, and Reorder Items</h2>
+
+<h3>Adding</h3>
+<ul>
+  <li><strong>Double-click</strong> an item in the left tree</li>
+  <li>The item is added to the Active Items list and the preview</li>
+</ul>
+<div class="note">An error is shown if you try to add an already active item.</div>
+
+<h3>Removing</h3>
+<ul>
+  <li>Select a row in the Active Items list</li>
+  <li>Click <kbd>❌ Remove</kbd></li>
+  <li>Or click <kbd>🔄 Clear</kbd> to remove all active items</li>
+</ul>
+
+<h3>Reordering</h3>
+<ul>
+  <li>Use <kbd>▲ Move Up</kbd> / <kbd>▼ Move Down</kbd> buttons</li>
+  <li>The order determines the display order on the wallpaper</li>
+</ul>
+
+<!-- ───── 7. Dragging ───── -->
+<h2 id="drag">7. Dragging Items</h2>
+<p>You can drag items in the preview area to position them anywhere.</p>
+
+<h3>Basic Dragging</h3>
+<ol>
+  <li>In the preview area, click on an item's <strong>label</strong> or <strong>value</strong></li>
+  <li>Hold the mouse button and drag</li>
+  <li>Release to place the item at the new position</li>
+</ol>
+
+<h3>Drag Constraint Modes</h3>
+<p>Use the "Drag Mode" section on the right panel to constrain movement:</p>
+<table>
+  <tr><th>Mode</th><th>Behavior</th></tr>
+  <tr><td><kbd>↔ Horizontal</kbd> (only)</td><td>Items move only on the X axis</td></tr>
+  <tr><td><kbd>↕ Vertical</kbd> (only)</td><td>Items move only on the Y axis</td></tr>
+  <tr><td>Both selected / Neither selected</td><td>Items move freely in any direction</td></tr>
+</table>
+
+<h3>Multi-Select Bulk Move</h3>
+<ol>
+  <li>Hold <kbd>Ctrl</kbd> and click on multiple items in the preview</li>
+  <li>Selected items are highlighted</li>
+  <li>Drag any selected item → all selected items move together</li>
+</ol>
+
+<div class="tip"><kbd>Ctrl+Click</kbd> can select only the label or only the value of an item. This lets you move labels and values independently.</div>
+
+<h3>Panning the Preview</h3>
+<p>Click and drag on an <strong>empty area</strong> of the preview to pan the entire view. This clears the current selection.</p>
+
+<!-- ───── 8. Alignment ───── -->
+<h2 id="align">8. Alignment</h2>
+<p>Four alignment buttons arrange selected items relative to each other:</p>
+<table>
+  <tr><th>Button</th><th>Action</th></tr>
+  <tr><td><kbd>←</kbd> Align Left</td><td>Sets the X coordinate of all selected parts to the leftmost item's X</td></tr>
+  <tr><td><kbd>→</kbd> Align Right</td><td>Sets the right edge (X + width) of all selected parts to the rightmost item's edge</td></tr>
+  <tr><td><kbd>↑</kbd> Align Top</td><td>Sets the Y coordinate of all selected parts to the topmost item's Y</td></tr>
+  <tr><td><kbd>↓</kbd> Align Bottom</td><td>Sets the bottom edge (Y + height) of all selected parts to the bottommost item's edge</td></tr>
+</table>
+
+<div class="note">
+  <strong>Important:</strong> Alignment measures the actual pixel width of text (using Pillow). Right and bottom alignment correctly account for each part's width/height.
+</div>
+
+<h3>Auto-Align (Align Button)</h3>
+<p>
+The <kbd>📋 Align</kbd> button arranges all active items at default positions (origin: 30,30; label-value gap: 200px; row height: 35px). Useful for quickly organizing scattered items.
+</p>
+
+<h3>Alignment Tips</h3>
+<ul>
+  <li>First select at least 2 items with <kbd>Ctrl+Click</kbd></li>
+  <li>You can select only labels or only values for separate alignment</li>
+  <li>Align labels of different items together, values in a separate group</li>
+</ul>
+
+<!-- ───── 9. Properties ───── -->
+<h2 id="properties">9. Properties Panel</h2>
+<p>Below the center panel, you can edit all properties of the selected item. It has three tabs:</p>
+
+<h3>Label Tab</h3>
+<ul>
+  <li><strong>Label Name</strong> — Change the displayed text</li>
+  <li><strong>Static Value</strong> — Show a fixed text instead of the dynamic value</li>
+  <li><strong>Show</strong> — Toggle label visibility</li>
+  <li><strong>Font / Size / Color</strong> — Customize appearance</li>
+</ul>
+
+<h3>Value Tab</h3>
+<ul>
+  <li><strong>Show</strong> — Toggle value visibility</li>
+  <li><strong>Font / Size / Color</strong> — Customize appearance</li>
+  <li><strong>Static Value</strong> — Show fixed text as the value</li>
+</ul>
+
+<h3>Position Tab</h3>
+<ul>
+  <li><strong>Label X / Y</strong> — Pixel position of the label</li>
+  <li><strong>Value X / Y</strong> — Pixel position of the value</li>
+  <li>Enter values directly for precise positioning</li>
+</ul>
+
+<h3>Apply to All</h3>
+<p>The <kbd>→ All</kbd> button next to each property applies that property to all active items at once. For example, change the font of all labels simultaneously.</p>
+
+<!-- ───── 10. Row Spacing ───── -->
+<h2 id="spacing">10. Row Spacing</h2>
+<p>
+The <strong>"Row Spacing"</strong> spinbox at the bottom of the right panel rearranges the vertical (Y) positions of all active items. When you change the value:
+</p>
+<ul>
+  <li>Items' Y coordinates are evenly distributed starting from the first item's Y</li>
+  <li>X coordinates are preserved</li>
+  <li>Range: 10-100 pixels</li>
+</ul>
+
+<!-- ───── 11. Background ───── -->
+<h2 id="background">11. Background Settings</h2>
+<p>Two background buttons on the right side of the toolbar:</p>
+
+<h3>Background Color</h3>
+<p>Click <kbd>🎨 Background Color</kbd> to choose a solid background color. Default: dark navy (#1e1e2e).</p>
+
+<h3>Background Image</h3>
+<p>Click <kbd>🖼 Background Image</kbd> to select an image file (JPG, PNG, BMP). The image is scaled to fit the screen resolution.</p>
+
+<div class="note">The background type (color or image) is determined automatically. The last selected type is used.</div>
+
+<!-- ───── 12. Language ───── -->
+<h2 id="language">12. Language Switching (Türkçe / English)</h2>
+<p>
+The toolbar has <kbd>Türkçe</kbd> / <kbd>English</kbd> radio buttons. Click to switch the entire interface instantly:
+</p>
+<ul>
+  <li>Menus, buttons, labels</li>
+  <li>Tree item names and categories</li>
+  <li>Status bar messages</li>
+  <li>Dialog windows (warning, success, confirm)</li>
+</ul>
+<p>Your language preference is saved and remembered on next launch.</p>
+
+<div class="tip">When you switch languages, your active item labels are updated while keeping your position settings.</div>
+
+<!-- ───── 13. Startup ───── -->
+<h2 id="startup">13. Startup Settings</h2>
+
+<h3>Refresh on Startup</h3>
+<p>If checked, data is automatically collected and cached when the program starts. Items show their values immediately if cache is available.</p>
+
+<h3>Change &amp; Close on Startup</h3>
+<p>This feature is for running the program at Windows startup to automatically change the wallpaper and exit:</p>
+<ol>
+  <li>Check the box</li>
+  <li>Set the wait duration (1-10 seconds)</li>
+  <li>On next launch:
+    <ul>
+      <li>Starts minimized to taskbar</li>
+      <li>Collects data</li>
+      <li>Applies the wallpaper</li>
+      <li>Waits the set duration</li>
+      <li>Closes automatically</li>
+    </ul>
+  </li>
+</ol>
+<div class="warn">
+  <strong>Cancellation:</strong> Before the duration expires, open the program window and uncheck "Change &amp; Close on Startup" — the program will not close and continues normally.
+</div>
+
+<!-- ───── 14. Wallpaper ───── -->
+<h2 id="wallpaper">14. Applying the Wallpaper</h2>
+<ol>
+  <li>Make sure you have at least one active item</li>
+  <li>Position items and adjust properties as desired</li>
+  <li>Choose a background color or image</li>
+  <li>Click <kbd>🖨 Apply Wallpaper</kbd></li>
+</ol>
+<p>The program:</p>
+<ol>
+  <li>Detects the physical screen resolution (DPI-independent, real pixels)</li>
+  <li>Creates a high-quality BMP image</li>
+  <li>Renders the information text onto the image</li>
+  <li>Changes the wallpaper via the Windows API</li>
+</ol>
+
+<div class="note">
+  <strong>Resolution:</strong> The program ignores Windows DPI scaling. It creates a lossless image at the physical screen resolution (100% scale), ensuring sharp, readable text.
+</div>
+
+<!-- ───── 15. Preview ───── -->
+<h2 id="preview">15. Preview</h2>
+<p>The preview area on the right panel shows how the wallpaper will look.</p>
+
+<h3>Live Preview</h3>
+<p>As you add items, the preview updates in real time. All changes (position, font, color) are reflected immediately.</p>
+
+<h3>Full Screen Preview (<kbd>🔍 Preview</kbd>)</h3>
+<ul>
+  <li>Displays the wallpaper in full screen</li>
+  <li><strong>Mouse wheel</strong> to zoom in/out</li>
+  <li>Press <kbd>ESC</kbd> or click to close</li>
+</ul>
+
+<!-- ───── 16. Desktop Preview ───── -->
+<h2 id="desktop-preview">16. Desktop Preview</h2>
+<p>
+<kbd>🖥 Desktop Preview</kbd> shows the wallpaper on your actual desktop:
+</p>
+<ol>
+  <li>All open windows are minimized</li>
+  <li>The wallpaper is temporarily applied</li>
+  <li>It's displayed for the set <strong>Wait Duration</strong> (1-60 seconds)</li>
+  <li>After the time expires, the old wallpaper is restored and the app comes to the front</li>
+</ol>
+<div class="tip">Desktop preview is ideal for testing the wallpaper in the real environment. Adjust the wait duration to your needs.</div>
+
+<!-- ───── 17. Shortcuts ───── -->
+<h2 id="shortcuts">17. Shortcuts &amp; Tips</h2>
+<table>
+  <tr><th>Action</th><th>How To</th></tr>
+  <tr><td>Add item</td><td>Double-click an item in the left tree</td></tr>
+  <tr><td>Multi-select</td><td>Hold <kbd>Ctrl</kbd> and click items</td></tr>
+  <tr><td>Part selection</td><td><kbd>Ctrl+Click</kbd> to select only label or only value</td></tr>
+  <tr><td>Bulk move</td><td>Multi-select, then drag any selected item</td></tr>
+  <tr><td>Pan preview</td><td>Click and drag on an empty area</td></tr>
+  <tr><td>Close full screen</td><td><kbd>ESC</kbd> key or mouse click</td></tr>
+  <tr><td>Auto-save</td><td>All changes are saved instantly, no manual save needed</td></tr>
+  <tr><td>Reset settings</td><td>Delete <code>%APPDATA%\WallpaperInformativeTool\settings.json</code></td></tr>
+</table>
+
+<!-- ───── 18. FAQ ───── -->
+<h2 id="faq">18. Frequently Asked Questions</h2>
+
+<h3>Why won't the program open?</h3>
+<p>EXE version: antivirus software may be blocking it. Python version: make sure you installed dependencies with <code>pip install -r requirements.txt</code>.</p>
+
+<h3>Why are values not showing?</h3>
+<p>Click the "Refresh Data" button. On first launch, items may show "..." until data is collected.</p>
+
+<h3>Why won't the wallpaper apply?</h3>
+<p>Make sure you have at least one active item. The wallpaper cannot be applied with an empty Active Items list.</p>
+
+<h3>Where are settings stored?</h3>
+<p>In <code>%APPDATA%\WallpaperInformativeTool\settings.json</code>. Delete this file to reset all settings.</p>
+
+<h3>Where is the cache stored?</h3>
+<p><code>cached_data.json</code> is stored next to the EXE or in the project folder. It's updated when you refresh data.</p>
+
+<h3>How do I change the language?</h3>
+<p>Click the <kbd>Türkçe</kbd> / <kbd>English</kbd> radio button on the toolbar. The interface changes instantly.</p>
+
+<h3>Does it work with multiple monitors?</h3>
+<p>The program uses the primary monitor's physical resolution. Multi-monitor support is limited.</p>
+
+<h3>Can I run it at Windows startup?</h3>
+<p>Add a shortcut to the EXE in <code>shell:startup</code> and check "Change &amp; Close on Startup".</p>
+
+<!-- ───── 19. Contact ───── -->
+<h2 id="contact">19. Contact</h2>
+<p>
+  <strong>Prepared by:</strong> Asri Akdeniz<br>
+  <strong>Email:</strong> asriakdeniz@gmail.com<br>
+  <strong>Web:</strong> www.asriakdeniz.com
+</p>
+<p style="margin-top: 20px; color: #888; font-size: 0.9em;">
+  &copy; 2026 Asri Akdeniz. All rights reserved.
+</p>
+
+<div class="footer">
+  WallpaperInformativeTool — The Modern Alternative to BGInfo
+</div>
+
+</div>
+</body>
+</html>
