@@ -36,6 +36,19 @@ def _load_font(name, size):
         return ImageFont.load_default()
 
 
+def _parse_color(css, default=(255,255,255)):
+    """Parse #RRGGBB or #RGB color string to (R,G,B) tuple."""
+    if not css: return default
+    h = css.lstrip("#").strip()
+    if len(h) == 6:
+        try: return tuple(int(h[i:i+2],16) for i in (0,2,4))
+        except: return default
+    if len(h) == 3:
+        try: return tuple(int(c*2,16) for c in h)
+        except: return default
+    return default
+
+
 def _find_icon():
     """Locate app_icon.ico for dev mode and frozen EXE."""
     try:
@@ -399,13 +412,16 @@ class MainWindow:
             def pick(v=var, lbl=lbl):
                 c = colorchooser.askcolor(color=v.get(), title=lbl)[1]
                 if c: v.set(c); self._apply_prop()
-            btn = tk.Button(cf, text="\u2588\u2588", command=pick, bg=var.get(),
-                          fg="white", relief=tk.FLAT, width=3, cursor="hand2")
+            btn = tk.Label(cf, text="  ", bg=var.get(),
+                          relief=tk.RAISED, width=3, cursor="hand2")
             btn.pack(side=tk.LEFT, padx=2)
+            btn.bind("<Button-1>", lambda e, p=pick: p())
             color_btn_ref[0] = btn
 
             def on_color_change(*a, v=var, b=btn):
-                try: b.configure(bg=v.get())
+                try:
+                    c = v.get()
+                    b.configure(bg=c)
                 except: pass
                 self._apply_prop()
             var.trace_add("write", on_color_change)
@@ -792,8 +808,7 @@ class MainWindow:
                         draw.rectangle((int(it.label_x*s)+bb[0]-2, int(it.label_y*s)+bb[1]-2,
                                         int(it.label_x*s)+bb[2]+2, int(it.label_y*s)+bb[3]+2),
                                        outline=(124,58,237), width=2)
-                    lc = it.label_font_color.lstrip("#")
-                    lrgb = tuple(int(lc[i:i+2],16) for i in (0,2,4)) if len(lc)==6 else (255,255,255)
+                    lrgb = _parse_color(it.label_font_color, (255,255,255))
                     draw.text((int(it.label_x*s), int(it.label_y*s)), it.label, fill=lrgb, font=lf)
                 if it.show_value:
                     vf = _load_font(it.value_font_name, fsize_value)
@@ -803,8 +818,7 @@ class MainWindow:
                         draw.rectangle((int(it.value_x*s)+bb[0]-2, int(it.value_y*s)+bb[1]-2,
                                         int(it.value_x*s)+bb[2]+2, int(it.value_y*s)+bb[3]+2),
                                        outline=(124,58,237), width=2)
-                    vc = it.value_font_color.lstrip("#")
-                    vrgb = tuple(int(vc[i:i+2],16) for i in (0,2,4)) if len(vc)==6 else (0,255,0)
+                    vrgb = _parse_color(it.value_font_color, (0,255,0))
                     draw.text((int(it.value_x*s), int(it.value_y*s)), display_val, fill=vrgb, font=vf)
             except: continue
         return img
@@ -1148,7 +1162,27 @@ class MainWindow:
             return 1920, 1080
 
     def _compose_wallpaper(self, size=None):
-        sw, sh = size if size else self._get_screen_size()
+        lw = ctypes.windll.user32.GetSystemMetrics(0)
+        lh = ctypes.windll.user32.GetSystemMetrics(1)
+        # Physical resolution
+        try:
+            dc = ctypes.windll.user32.GetDC(0)
+            pw = ctypes.windll.gdi32.GetDeviceCaps(dc, 118)
+            ph = ctypes.windll.gdi32.GetDeviceCaps(dc, 117)
+            ctypes.windll.user32.ReleaseDC(0, dc)
+        except:
+            pw, ph = lw, lh
+        if pw <= 0 or ph <= 0:
+            pw, ph = lw, lh
+        scale = min(pw / lw, ph / lh) if lw > 0 and lh > 0 else 1.0
+
+        if size:
+            sw, sh = size
+            s = min(sw / lw, sh / lh)
+        else:
+            sw, sh = pw, ph
+            s = scale
+
         if self._bg_type == "image" and self._bg_image and os.path.isfile(self._bg_image):
             img = Image.open(self._bg_image).convert("RGB").resize((sw, sh), Image.LANCZOS)
         else:
@@ -1161,15 +1195,13 @@ class MainWindow:
         for it in self._active_items:
             try:
                 if it.show_label:
-                    lf = _load_font(it.label_font_name, it.label_font_size)
-                    lc = it.label_font_color.lstrip("#")
-                    lrgb = tuple(int(lc[i:i+2],16) for i in (0,2,4)) if len(lc)==6 else (255,255,255)
-                    draw.text((it.label_x, it.label_y), it.label, fill=lrgb, font=lf)
+                    lf = _load_font(it.label_font_name, max(1, int(it.label_font_size * s)))
+                    lrgb = _parse_color(it.label_font_color, (255,255,255))
+                    draw.text((int(it.label_x * s), int(it.label_y * s)), it.label, fill=lrgb, font=lf)
                 if it.show_value:
-                    vf = _load_font(it.value_font_name, it.value_font_size)
-                    vc = it.value_font_color.lstrip("#")
-                    vrgb = tuple(int(vc[i:i+2],16) for i in (0,2,4)) if len(vc)==6 else (0,255,0)
-                    draw.text((it.value_x, it.value_y), self._get_display_val(it), fill=vrgb, font=vf)
+                    vf = _load_font(it.value_font_name, max(1, int(it.value_font_size * s)))
+                    vrgb = _parse_color(it.value_font_color, (0,255,0))
+                    draw.text((int(it.value_x * s), int(it.value_y * s)), self._get_display_val(it), fill=vrgb, font=vf)
             except: continue
         return img
 
