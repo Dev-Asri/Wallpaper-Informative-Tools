@@ -49,8 +49,10 @@ items.append(InfoItem(
 ## Derleme (EXE)
 ```powershell
 pip install pyinstaller
-pyinstaller --onefile --noconsole --name "WallpaperInformativeTool" --add-data "D:\AICodeProje\PC_On_Hazirlik\BILGISAYAR_BILGI_TOPLA\windows_sysinfo;windows_sysinfo" --add-data "help;help" --hidden-import wmi --hidden-import getpass --hidden-import pyodbc src/main.py
+pyinstaller --onefile --noconsole --name "WallpaperInformativeTool" --icon "app_icon.ico" --add-data "app_icon.ico;." --add-data "D:\AICodeProje\PC_On_Hazirlik\BILGISAYAR_BILGI_TOPLA\windows_sysinfo;windows_sysinfo" --add-data "help;help" --hidden-import wmi --hidden-import getpass --hidden-import pyodbc src/main.py
 ```
+
+> **NOT:** `--icon` flag'ı PyInstaller tarafından PKG arşivi eklenmeden **önce** işlenir. `scripts/patch_icon.py` sonradan çalıştırılırsa `BeginUpdateResource` PKG arşivini bozar — **kullanmayın**.
 
 ## GitHub
 - **Repo:** https://github.com/Dev-Asri/Wallpaper-Informative-Tools

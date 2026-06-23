@@ -36,19 +36,30 @@ def _load_font(name, size):
         return ImageFont.load_default()
 
 
+def _find_icon():
+    """Locate app_icon.ico for dev mode and frozen EXE."""
+    try:
+        if getattr(sys, 'frozen', False):
+            base = sys._MEIPASS
+        else:
+            base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        for name in ("app_icon.ico", "icon.ico"):
+            path = os.path.join(base, name)
+            if os.path.isfile(path):
+                return path
+    except: pass
+    return None
+
+
 class MainWindow:
     def __init__(self):
-        import time as _time
-        self._t0 = _time.time()
-        self._t_log = []
-        self._t_log.append(("__init__ start", 0))
         self.root = tk.Tk()
         self.root.title(_("window_title"))
         self.root.state("zoomed")
         self.root.minsize(1200, 700)
         try:
-            ico = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "icon.ico")
-            if os.path.isfile(ico):
+            ico = _find_icon()
+            if ico:
                 self.root.iconbitmap(ico)
         except: pass
         self._first_map = True
@@ -63,7 +74,6 @@ class MainWindow:
         self.root.configure(bg=self.C["bg"])
 
         self.config_mgr = ConfigManager()
-        self._t_mark("ConfigManager loaded")
 
         self._all_data = {}
         self._all_items = []
@@ -98,10 +108,7 @@ class MainWindow:
         self._setup_ui()
         if hasattr(self, "_lang_var"):
             self._lang_var.set(saved_lang)
-        self._t_mark("UI kurulumu tamam")
         self._startup()
-        self._t_mark("startup tamam")
-        self._write_startup_log()
 
         self.root.protocol("WM_DELETE_WINDOW", self._on_close)
 
@@ -418,29 +425,12 @@ class MainWindow:
                  activebackground=self._lighten(self.C["accent2"]),
                  activeforeground="white").grid(row=0, column=2, padx=4, pady=2)
 
-    def _t_mark(self, label):
-        import time as _time
-        self._t_log.append((label, (_time.time() - self._t0) * 1000))
-
-    def _write_startup_log(self):
-        try:
-            import time
-            _log_dir = self._get_data_dir()
-            path = os.path.join(_log_dir, "wallpaper_startup.log")
-            with open(path, "w", encoding="utf-8") as f:
-                for label, ms in self._t_log:
-                    f.write(f"{ms:8.1f}ms  {label}\n")
-        except Exception:
-            pass
-
     # ── Startup ──
     def _startup(self):
         self._status(_("loading"))
         self.root.update_idletasks()
-        self._t_mark("update_idletasks")
         try:
             st = self.config_mgr.load()
-            self._t_mark("config loaded")
             self._bg_type = st.get("background_type", "color")
             self._bg_color = st.get("background_color", "#1e1e2e")
             self._bg_image = st.get("background_image", "")
@@ -476,10 +466,7 @@ class MainWindow:
             self._all_items = flatten_items(self._tree_cats)
             for it in self._all_items:
                 it.last_value = st.get("last_values", {}).get(it.id, "")
-            self._t_mark("build_tree tamam")
-            self._t_mark(f"  total items: {len(self._all_items)}")
             self._populate_tree(cats=self._tree_cats)
-            self._t_mark("populate_tree tamam")
 
             saved = st.get("items", [])
             if saved:
@@ -490,7 +477,6 @@ class MainWindow:
                             setattr(it, k, v)
                     self._active_items.append(it)
                 self._active_items = restore_getters(self._active_items, self._all_items)
-                self._t_mark("restore_getters tamam")
                 self._refresh_grid()
                 self._status(_("items_loaded", len(self._active_items)))
             else:
@@ -498,7 +484,6 @@ class MainWindow:
             self.root.update_idletasks()
             self._center_preview()
             self._render_preview()
-            self._t_mark("render_preview tamam")
             if self._startup_run.get():
                 self._startup_run_pending = True
                 self._startup_refresh.set(True)
