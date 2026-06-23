@@ -46,6 +46,11 @@ class MainWindow:
         self.root.title(_("window_title"))
         self.root.state("zoomed")
         self.root.minsize(1200, 700)
+        try:
+            ico = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "icon.ico")
+            if os.path.isfile(ico):
+                self.root.iconbitmap(ico)
+        except: pass
         self._first_map = True
 
         self.style = ttk.Style()
